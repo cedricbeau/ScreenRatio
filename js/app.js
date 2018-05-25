@@ -3,6 +3,7 @@
 toggleConsigne()
 checkRatio()
 calcRatio()
+closeAlert()
 clearInput()
 
 
@@ -16,14 +17,14 @@ function toggleConsigne(){
     el3.classList.toggle('is-down')
   }
 
-  function toggleConsigne(){
+  function toggleEls(){
     let consigne = document.querySelector('.consignes')
     let content = document.querySelector('.content')
     let btn = document.querySelector('.btn-consignes')
     toggleClass(consigne, content, btn)
   }
   
-  btn.addEventListener('click', toggleConsigne, false)  
+  btn.addEventListener('click', toggleEls, false)  
 
 }
 
@@ -55,7 +56,6 @@ function checkRatio() {
           titleRatio.classList.remove('43')
         }
         titleRatio.classList.add('169')
-        aspectRatio()
       }
 
       if(checkRadio[i].id === '43') {
@@ -64,7 +64,6 @@ function checkRatio() {
           titleRatio.classList.remove('169')
         }
         titleRatio.classList.add('43')
-        aspectRatio()
       }
 
     })
@@ -115,6 +114,7 @@ function calcRatio(){
 
 }
 
+//
 function clearValues(input1, input2, resultat){
   input1.value = ''
   input2.innerText = ' '
@@ -122,31 +122,30 @@ function clearValues(input1, input2, resultat){
   resultat.style.height = ''  
 }
 
-function clear() {
+//
+function clear() {	
   let width = document.querySelector('#width')
   let height = document.querySelector('#height')
   let result = document.querySelector('.resultat')
   clearValues(width, height, result)
 }
 
+// Detect number
+function isNumber(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+//
 function keySuppr(e){
-  if(
-    e.key !== '0' &&
-    e.key !== '1' &&
-    e.key !== '2' &&
-    e.key !== '3' &&
-    e.key !== '4' &&
-    e.key !== '5' &&
-    e.key !== '6' &&
-    e.key !== '7' &&
-    e.key !== '8' &&
-    e.key !== '9' 
-    ){
-    alert('Touche non valide. Veuillez séléctionner les touches de 0 à 9')
+	let alertBox = document.querySelector('.alert-danger')
+  if(isNumber(e.key) === false){
+	  console.log(e.key)
+	  alertBox.style.display = 'block'
     clear()
   }  
 }
 
+// Clear input
 function clearInput(){
 
   let btn = document.querySelector('.btn-reset')
@@ -155,6 +154,15 @@ function clearInput(){
   btn.addEventListener('click', clear, false)
   width.addEventListener('keyup', keySuppr, false)  
 
+}
+
+// Close alert
+function closeAlert(){
+  let closeAlertBtn = document.querySelector('.close-alert')
+  closeAlertBtn.addEventListener('click', function(){
+	  console.log(this)
+    this.parentNode.style.display = 'none'
+  })
 }
 
 
