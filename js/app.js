@@ -16,6 +16,7 @@ function checkRatio() {
     if(checkRadio[i].checked === false) {
       calc.style.opacity = '.5'
       calc.style.pointerEvents = 'none'
+      calc.style.boxShadow = '0 0 0 rgba(00,00,00,0)'
     }
 
     checkRadio[i].addEventListener('click', function() {
@@ -24,6 +25,7 @@ function checkRatio() {
 
       calc.style.opacity = '1'
       calc.style.pointerEvents = 'all'
+      calc.style.boxShadow = '0 0 20px rgba(00,00,00,0.15)'
 
       console.log(checkRadio[i].id)
 
