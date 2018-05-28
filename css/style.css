@@ -143,8 +143,21 @@ h1 {
 }
 
 .check-title {
+	display: flex;
+	align-items: center;
   margin-right: .625em;
   font-size: .875em;
+}
+
+
+.check-title svg {
+	display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: .625em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
 }
 
 .check-section {
@@ -337,5 +350,5 @@ footer a:hover {
 }
 
 footer a:hover svg {
-  fill: #03A9F4;
+	fill: #03A9F4;
 }
