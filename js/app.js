@@ -14,7 +14,7 @@ function checkRatio() {
   for(let i=0; i<checkRadio.length; i++){
 
     if(checkRadio[i].checked === false) {
-      calc.style.opacity = '.2'
+      calc.style.opacity = '.5'
       calc.style.pointerEvents = 'none'
     }
 
