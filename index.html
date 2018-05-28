@@ -17,11 +17,9 @@
 	
   <svg  style="position: absolute; width: 0; height: 0; overflow: hidden" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
-      <symbol id="icon-heart" viewBox="0 0 32 32">
-        <title>heart</title>
-        <path d="M23.6 2c-3.363 0-6.258 2.736-7.599 5.594-1.342-2.858-4.237-5.594-7.601-5.594-4.637 0-8.4 3.764-8.4 8.401 0 9.433 9.516 11.906 16.001 21.232 6.13-9.268 15.999-12.1 15.999-21.232 0-4.637-3.763-8.401-8.4-8.401z"></path>
-      </symbol>
+      <symbol id="icon-heart" viewBox="0 0 32 32"><title>heart</title><path d="M23.6 2c-3.363 0-6.258 2.736-7.599 5.594-1.342-2.858-4.237-5.594-7.601-5.594-4.637 0-8.4 3.764-8.4 8.401 0 9.433 9.516 11.906 16.001 21.232 6.13-9.268 15.999-12.1 15.999-21.232 0-4.637-3.763-8.401-8.4-8.401z"></path></symbol>
       <symbol id="shape-code" viewBox="0 0 20 15"><title>code</title><path d="M13.197.39l-2.084 2.083 4.862 4.862-4.862 4.862 2.084 2.084 6.251-6.946-6.25-6.946zm-6.946 0L0 7.334l6.251 6.946 2.084-2.084-4.862-4.862 4.862-4.862L6.251.389z" fill-rule="nonzero"/></symbol>
+      <symbol id="icon-arrow-right2" viewBox="0 0 32 32"><title>arrow-right2</title><path d="M19.414 27.414l10-10c0.781-0.781 0.781-2.047 0-2.828l-10-10c-0.781-0.781-2.047-0.781-2.828 0s-0.781 2.047 0 2.828l6.586 6.586h-19.172c-1.105 0-2 0.895-2 2s0.895 2 2 2h19.172l-6.586 6.586c-0.39 0.39-0.586 0.902-0.586 1.414s0.195 1.024 0.586 1.414c0.781 0.781 2.047 0.781 2.828 0z"></path></symbol>
     </defs>
   </svg>    
   <!-- .SVG -->  
@@ -45,7 +43,7 @@
     </div>
 
     <div class="check">
-      <div class="check-title">Sélectionner un ratio</div>
+      <div class="check-title">Sélectionner un ratio <svg class="icon icon-arrow-right2"><use xlink:href="#icon-arrow-right2"></use></svg></div>
       <div class="check-section">
         <input type="radio" name="ratio" id="169"  class="check-radio">
         <label for="169">16:9</label>
@@ -85,6 +83,7 @@
 
   </div>
   
+  <script  src="js/consignes.js"></script>
   <script  src="js/app.js"></script>
 
 </body>
