@@ -34,38 +34,6 @@ body {
   cursor: pointer;
 }
 
-.btn-consignes {
-  position: fixed;
-  top: 200px;
-  right: 0;
-  padding: .875em 2.875em .875em .875em;
-  color: var(--consignes--color);
-  background-color: var(--btn--consignes--backgroundColor);
-  border-bottom-left-radius: .25rem;
-  transition: background-color .4s;
-}
-
-.btn-consignes:hover {
-  background-color: var(--consignes--backgroundColor);
-}
-
-.btn-consignes::before {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: block;
-  width: 3em;
-  height: 3em;
-  content: "\25BC";
-  line-height: 3;
-  text-align: center;
-  transition: transform .4s;
-}
-
-.btn-consignes.is-down::before {
-  transform: rotateX(180deg);
-}
-
 .btn-reset {
   padding: .625em 1em;
   color: var(--btn--reset--color);
@@ -82,42 +50,7 @@ body {
   box-shadow: 0 0 4px rgba(00,00,00,0.35);
 }
 
-/* ---------- Consigne ----------- */
-
-.consignes {
-  position: fixed;
-  z-index: 999;
-  right: 0;
-  left: 0;
-  transform: translateY(-200px);  
-  height: 200px;
-  padding: 1em;
-  color: var(--consignes--color);
-  background-color: var(--consignes--backgroundColor);
-  transition: transform .4s;
-}
-
-.consignes.is-down {  
-  transform: translateY(0); 
-}
-
-.consignes h3 {
-  margin-top: 0;
-}
-
-.consignes ol li + li {
-  margin-top: .625em;
-}
-
 /* ---------- Content ---------- */
-
-.content {
-  transition: transform .4s;
-}
-
-.content.is-down {
-  transform: translateY(200px);
-}
 
 .content__header {
   position: relative;
@@ -170,7 +103,6 @@ h1 {
   width: 60px;
   padding: 8px 12px;  
   text-align: center;  
-  /* background-color: #CFD8DC; */
   border: 2px solid #fff;
   cursor: pointer;
   transition: all .4s;
@@ -319,36 +251,3 @@ h1 {
   transition: all .6s;
 }
 
-/* ---------- Footer ---------- */
-
-footer {
-  margin: 2em 0;
-  font-size: .75em;
-  color: #78909C; 
-  text-align: center;
-}
-
-footer svg {
-  display: inline-block;
-  vertical-align: middle;
-  stroke-width: 0;
-  stroke: currentColor;
-  fill: currentColor;
-  -webkit-transition: fill .4s;
-  				transition: fill .4s;
-}
-
-footer a {
-  color: currentColor;
-  text-decoration: none; 
-  -webkit-transition: color .4s;
-  				transition: color .4s;
-}
-
-footer a:hover {
-  color: #03A9F4;
-}
-
-footer a:hover svg {
-	fill: #03A9F4;
-}
