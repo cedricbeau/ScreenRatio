@@ -1,10 +1,7 @@
 :root {
   --body--color: #263238;
   --body--backgroundColor: #ECEFF1;
-  --consignes--color: #ccc;
-  --consignes--backgroundColor: #141414;
-  --btn--consignes--backgroundColor: #333;
-
+  
   --btn--reset--color: #ffebee;
   --btn--reset--backgroundColor:#e57373;
   --btn--reset--backgroundColor--hover: #c62828;
