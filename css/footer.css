@@ -1,0 +1,33 @@
+/* ---------- Footer ---------- */
+footer {
+	width: 18.75rem;
+  padding-top: 2em;
+  margin-right: auto;
+  margin-bottom: 2em;
+  margin-left: auto;
+  font-size: 0.875em;
+  text-align: center;
+}
+
+footer div + div {
+  margin-top: 1em;
+}
+
+footer a {
+  color: currentColor;
+  text-decoration: none;
+  transition: color .4s;
+}
+
+footer a:hover {
+  color: #03A9F4;
+}
+
+footer svg {
+  display: inline-block;
+  vertical-align: middle;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+  transition: fill .4s;
+}

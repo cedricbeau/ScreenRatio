@@ -1,0 +1,21 @@
+{"name" : "ScreenRatio",
+    "short_name" : "ScreenRatio",
+    "theme_color" : "#ffffff",
+    "background_color" : "#ffffff",
+    "display" : "standalone",
+    "start_url" : "https://lab.cedricbeau.pro/ScreenRatio/",
+    "lang" : "French",
+    "orientation" : "portrait-primary",
+    "description" : "Calcule le ratio 'un écran en 16/9ème, 21/9ème ou 4/3'",
+    "scope" : "https://lab.cedricbeau.pro/ScreenRatio/",
+    "icons" : [
+        {
+            "src": "https://lab.cedricbeau.pro/ScreenRatio/favicon/android-chrome-192x192.png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "https://lab.cedricbeau.pro/ScreenRatio/favicon/android-chrome-512x512.png",
+            "sizes": "512x512"
+        }
+    ]
+}

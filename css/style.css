@@ -1,0 +1,235 @@
+:root {
+	--body--color: #fff;
+  --calc--color: #78909C;
+
+  --btn--reset--color: #ffebee;
+  --btn--reset--backgroundColor:#e57373;
+  --btn--reset--backgroundColor--hover: #c62828;
+}
+
+/* Smart reset */
+*,*:before,*:after {
+  box-sizing:border-box;
+}
+
+/**/
+
+body {
+	min-height: 100vh;
+	padding-left: .625em;
+	padding-right: .625em;
+  font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen-Sans,Ubuntu,Cantarell,'Helvetica Neue',sans-serif;
+  font-size: 100%;
+  color: var(--body--color);
+  background-image: linear-gradient(to top right, rgba(117,221,255,.6), rgba(120,144,156,.8)), url(../images/bg-screenRatio.png);
+	background-position: 0 0;
+	background-attachment: fixed;
+	background-size: auto;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn{  
+  display: inline-block;  
+  border: none;
+  cursor: pointer;
+}
+
+.btn-reset {
+  padding: .625em 1em;
+  color: var(--btn--reset--color);
+  background-color: var(--btn--reset--backgroundColor);
+  border-radius: .25em;  
+  transition: color .4s, background-color .4s;
+}
+
+.btn-reset:hover {
+  background-color: var(--btn--reset--backgroundColor--hover);
+}
+
+.btn-reset:focus {
+  box-shadow: 0 0 4px rgba(00,00,00,0.35);
+}
+
+/* ---------- Content ---------- */
+
+.content__header {
+  position: relative;
+}
+
+h1 {
+  padding: 2.5rem 0;
+  margin: 0;
+  font-weight: 400;
+	color: #fff;
+  text-align: center;
+}
+
+/* ---------- Radios ---------- */
+
+.check {
+  display: flex;
+  align-items: center;
+	justify-content: flex-end;
+  width: 100%;
+	max-width: 48em;
+  margin: 0 auto 1em auto; 
+}
+
+.check-title {
+	display: flex;
+	align-items: center;
+  margin-right: .625em;
+	line-height: 1;
+}
+
+
+.check-title svg {
+	display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: .625em;
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}
+
+.check-section {
+  display: flex;
+  align-items: center;
+}
+
+.check label {
+  display: inline-block;
+  width: 60px;
+  padding: 8px 12px;  
+  text-align: center;  
+  border: 2px solid #fff;
+  cursor: pointer;
+  transition: all .4s;
+}
+
+.check label:hover {
+	color: var(--calc--color);
+  background: #fff;
+}
+
+.check-section:nth-child(2) label {
+  border-top-left-radius: .25em;
+  border-bottom-left-radius: .25em;
+  border-right-width: 1px;
+}
+
+.check-section:nth-child(3) label {
+	border-right: 0;
+	border-left: 0;
+}
+
+.check-section:last-child label {
+  border-top-right-radius: .25em;
+  border-bottom-right-radius: .25em;
+  border-left-width: 1px;
+}
+
+.check-radio {
+  display: none;
+}
+
+.check-radio:checked + label {
+	color: var(--calc--color);
+  background-color: #fff;
+  box-shadow: 0 0 20px rgba(00,00,00,0.15);
+  cursor: auto;
+}
+
+/* ---------- Calc ---------- */
+
+
+.calc,
+.calc__section{
+  display: flex;
+  flex-wrap: wrap;  
+}
+
+.calc,
+.calc__section{
+  align-items: center;
+}
+
+.calc {
+	justify-content: space-between;
+  width: 100%;
+	max-width: 48em;
+  padding: 1.25em;
+  margin: 0 auto;
+	color: var(--calc--color);
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  border-radius: .25rem;
+  transition: opacity .4s;
+}
+
+.calc__section:nth-child(1),
+.calc__section:nth-child(2){
+  flex-direction: column;
+	width: calc(50% - .625em);
+}
+
+.calc__section:nth-child(4) {
+	justify-content: center;
+  width: 100%;
+  padding-top: 1.25em;
+  margin-top: 1.25em;
+  border-top: 1px solid #e5e5e5;
+}
+
+.input {
+  width: 100%;
+  height: 2.5em;
+	margin: 0.3125em 0;
+  line-height: 2.5;
+  text-align: center;
+	color: var(--calc--color);
+  border: 1px solid #e5e5e5;
+  border-radius: .25rem;
+}
+
+#height { 
+	color: var(--body--color);
+  background-color: var(--calc--color);
+  border-color: #526670;
+}
+
+/* ---------- Alert ---------- */
+
+.alert {
+  position: relative;
+  width: 100%;
+  padding: 1.25em;
+  margin-top: 1.5em;
+  font-size: .75em;  
+  border-radius: .25rem;
+}
+
+.alert-danger {
+	display: none;
+  color: var(--btn--reset--backgroundColor);
+  border: 1px solid var(--btn--reset--backgroundColor);  
+}
+
+.close-alert {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 1em;
+  padding: 0;
+  margin: 0;
+  color: currentColor;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
