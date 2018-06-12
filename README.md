@@ -6,5 +6,5 @@ Outil en ligne permettant de calculer le ratio 16:9, 21:9 ou 4:3 à partir de la
 
 [https://cedricbeau.github.io/ScreenRatio/](https://cedricbeau.github.io/ScreenRatio/)
 
-![Capture d'écran de ScreenRatio]( https://github.com/cedricbeau/ScreenRatio/blob/master/screen-ratio-01.png "Capture d'écran de ScreenRatio")
+![Capture d'écran de ScreenRatio]( https://github.com/cedricbeau/ScreenRatio/blob/master/ratio.png "Capture d'écran de ScreenRatio")
 
