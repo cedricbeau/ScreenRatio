@@ -1,4 +1,4 @@
-# Aspect-Ratio
+# ScreenRatio
 
 Outil en ligne permettant de calculer le ratio 16:9, 21:9 ou 4:3 à partir de la largeur connue.
 
