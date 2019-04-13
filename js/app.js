@@ -3,56 +3,31 @@
 let checkRadio = document.querySelectorAll('.check-radio')
 let width = document.querySelector('#width')  
 let height = document.querySelector('#height')
-let btnReset = document.querySelector('.btn-reset')
-let btnCloseAlert = document.querySelector('.close-alert')
+let resetBtn = document.querySelectorAll('.reset')
 
 checkRatio()
 
-function checkRatio() {  
+function checkRatio() {
 
   let titleRatio = document.querySelector('.title-ratio')
-  let calc = document.querySelector('.calc')
-    
-  for(let i=0; i<checkRadio.length; i++){
 
-    if(checkRadio[i].checked === false) {
-      calc.style.opacity = '.8'
-      calc.style.pointerEvents = 'none'
-      calc.style.boxShadow = '0 0 0 rgba(00,00,00,0)'
-    }
+  for(let i=0; i<checkRadio.length; i++) {
 
-    checkRadio[i].addEventListener('click', function() {
+    checkRadio[i].addEventListener('click', function(event) {
 
-      clear()
-
-      calc.style.opacity = '1'
-      calc.style.pointerEvents = 'all'
-      calc.style.boxShadow = '0 0 20px rgba(00,00,00,0.35)'
-
-      console.log(checkRadio[i].id)
-
-      if(checkRadio[i].id === '169') {
-        titleRatio.innerText = '16:9'
-      }
-			
-			if(checkRadio[i].id === '219') {
-        titleRatio.innerText = '21:9'
-      }
-
-      if(checkRadio[i].id === '43') {
-        titleRatio.innerText = '4:3'
-      }
+      reset()
+      calcStyle()
+      titleRatio.innerText = event.target.nextElementSibling.innerText
 
     })
 
   }
 
 }
-  
-  
-function calcRatio() {    
-    
-	//Récupère la valeur du input
+
+function calcRatio() {
+
+	//Get the input value
   let valueWidth = this.value
   valueWidth *= 1
   let valueHeight
@@ -61,57 +36,63 @@ function calcRatio() {
 
   	let radioChecked = checkRadio[i].checked
     let radioId = checkRadio[i].id
-      
-    if(radioChecked === true &&  radioId === '43') {        
+
+    if(radioChecked === true &&  radioId === '43') {
       valueHeight = Math.round((valueWidth/4)*3)
-    } else if (radioChecked === true && radioId === '169') {       
+    } else if (radioChecked === true && radioId === '169') {
       valueHeight = Math.round((valueWidth/16)*9)
-    } else if (radioChecked === true && radioId === '219') {       
+    } else if (radioChecked === true && radioId === '219') {
       valueHeight = Math.round((valueWidth/64)*27)
     }
-		
+
 	}
-        
-  //Affiche la hauteur
+
+  //Dispay height value
   height.innerText = valueHeight
-    
+
 }
 
-//
-function clear() {	
+// Show bloc values
+function calcStyle(calc, check) {
+
+  calc = document.querySelector('.calc')
+  calc.style.opacity = '1'
+  calc.style.pointerEvents = 'all'
+  calc.style.boxShadow = '0 0 20px rgba(00,00,00,0.35)'
+
+  check = document.querySelector('.check')
+  check.style.justifyContent = 'flex-end'
+
+}
+
+// Reset value
+function reset() {
+
   width.value = ''
   height.innerText = ' '
+  alertBox()
+
 }
 
-//
+// Alert NaN
 function alertBox(){
-	
-	let alertDanger = document.querySelector('.alert-danger')
-		
-	if(height.textContent === 'NaN') {
-		alertDanger.style.display = 'block'
-	}
-	if(height.textContent !== 'NaN') {
-		alertDanger.style.display = 'none'
-	}
-	
+
+  let alertDanger = document.querySelector('.alert-danger')
+
+  height.textContent === 'NaN' ? alertDanger.style.display = 'block' : alertDanger.style.display = 'none'
+
 }
 
 // Event Listener
 // Calc Ratio
-width.addEventListener('keyup', calcRatio, false) 
-
-// Clear input
-btnReset.addEventListener('click', clear, false)
-
-// Alert
-width.addEventListener('keyup', alertBox, false)  
-
-// Close alert
-btnCloseAlert.addEventListener('click', function(){
-	console.log(this)
-  this.parentNode.style.display = 'none'
+width.addEventListener('keyup', calcRatio, false)
+// Display Alert
+width.addEventListener('keyup', alertBox, false)
+// Close alert & Clear input
+resetBtn.forEach(function(event){
+    event.addEventListener('click', reset, false)
 })
+
 
 
 

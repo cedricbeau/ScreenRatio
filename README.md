@@ -10,6 +10,14 @@ Outil en ligne permettant de calculer le ratio 16:9, 21:9 ou 4:3 à partir de la
 
 ## Modifications
 
+**13/04/2019**
+
+* Refactorisaytion du JavaScript
+* Refactorisation du CSS
+* Diminution de l'opacité du formulaire tant q'un ratio n'est pas sélectionné
+* Position centrée du choix des ratios avant qu'un de celui-ci ne soit sélectionné
+* add .gitignore file
+
 **12/06/2018:**
 
 * Adaptation sur **smartphones**
