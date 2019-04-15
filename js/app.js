@@ -15,9 +15,9 @@ function checkRatio() {
 
     checkRadio[i].addEventListener('click', function(event) {
 
-      reset()
-      calcStyle()
       titleRatio.innerText = event.target.nextElementSibling.innerText
+      calcStyle()
+      calcRatio()
 
     })
 
@@ -28,13 +28,13 @@ function checkRatio() {
 function calcRatio() {
 
 	//Get the input value
-  let valueWidth = this.value
+  let valueWidth = width.value
   valueWidth *= 1
   let valueHeight
-   
+
   for(let i=0; i<checkRadio.length; i++){
 
-  	let radioChecked = checkRadio[i].checked
+    let radioChecked = checkRadio[i].checked
     let radioId = checkRadio[i].id
 
     if(radioChecked === true &&  radioId === '43') {
@@ -53,14 +53,14 @@ function calcRatio() {
 }
 
 // Show bloc values
-function calcStyle(calc, check) {
+function calcStyle() {
 
-  calc = document.querySelector('.calc')
+  let calc = document.querySelector('.calc')
   calc.style.opacity = '1'
   calc.style.pointerEvents = 'all'
   calc.style.boxShadow = '0 0 20px rgba(00,00,00,0.35)'
 
-  check = document.querySelector('.check')
+  let check = document.querySelector('.check')
   check.style.justifyContent = 'flex-end'
 
 }
@@ -92,10 +92,3 @@ width.addEventListener('keyup', alertBox, false)
 resetBtn.forEach(function(event){
     event.addEventListener('click', reset, false)
 })
-
-
-
-
-
-
-
