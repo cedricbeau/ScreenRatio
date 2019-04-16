@@ -10,58 +10,67 @@ checkRatio()
 function checkRatio() {
 
   let titleRatio = document.querySelector('.title-ratio')
+  
+  checkRadio.forEach(function(e){
 
-  for(let i=0; i<checkRadio.length; i++) {
+    e.addEventListener('change', function(e) {
 
-    checkRadio[i].addEventListener('click', function(event) {
+      // Add ratio in page title
+      titleRatio.innerText = e.target.nextElementSibling.innerText
 
-      titleRatio.innerText = event.target.nextElementSibling.innerText
+      // Display the calc box
       calcStyle()
+
+      // Do the calc ratio
       calcRatio()
 
     })
 
-  }
+  })
 
 }
 
-function calcRatio() {
-
-	//Get the input value
-  let valueWidth = width.value
-  valueWidth *= 1
-  let valueHeight
-
-  for(let i=0; i<checkRadio.length; i++){
-
-    let radioChecked = checkRadio[i].checked
-    let radioId = checkRadio[i].id
-
-    if(radioChecked === true &&  radioId === '43') {
-      valueHeight = Math.round((valueWidth/4)*3)
-    } else if (radioChecked === true && radioId === '169') {
-      valueHeight = Math.round((valueWidth/16)*9)
-    } else if (radioChecked === true && radioId === '219') {
-      valueHeight = Math.round((valueWidth/64)*27)
-    }
-
-	}
-
-  //Dispay height value
-  height.innerText = valueHeight
-
-}
-
-// Show bloc values
+// Display the calc box
 function calcStyle() {
 
   let calc = document.querySelector('.calc')
+
   calc.style.opacity = '1'
   calc.style.pointerEvents = 'all'
   calc.style.boxShadow = '0 0 20px rgba(00,00,00,0.35)'
 
-  let check = document.querySelector('.check')
-  check.style.justifyContent = 'flex-end'
+}
+
+// Do the calc ratio
+function calcRatio() {
+
+	// Get the input value
+  let valueWidth = width.value
+  valueWidth *= 1
+  let valueHeight
+
+  // The calc ratio depend of checbox checked
+  checkRadio.forEach(function(event){
+
+    if(event.checked === true) {
+
+      if(event.id === '43') {
+        valueHeight = Math.round((valueWidth/4)*3)
+      } else if(event.id === '169') {
+        valueHeight = Math.round((valueWidth/16)*9)
+      } else if (event.id === '219') {
+        valueHeight = Math.round((valueWidth/64)*27)
+      }
+
+    }
+
+  })
+
+  // Dispay height value
+  height.innerText = valueHeight
+
+  // Display alert box
+  alertBox()
 
 }
 
@@ -69,25 +78,28 @@ function calcStyle() {
 function reset() {
 
   width.value = ''
-  height.innerText = ' '
+  height.innerText = ''
+
+  // Close the alert box
   alertBox()
 
 }
 
 // Alert NaN
-function alertBox(){
+function alertBox() {
 
   let alertDanger = document.querySelector('.alert-danger')
 
-  height.textContent === 'NaN' ? alertDanger.style.display = 'block' : alertDanger.style.display = 'none'
+  isNaN(height.textContent) ? alertDanger.style.display = 'block' : alertDanger.style.display = 'none'
+  
+  //height.textContent === 'NaN' ? alertDanger.style.display = 'block' : alertDanger.style.display = 'none'
 
 }
 
 // Event Listener
-// Calc Ratio
+// Do calc ratio
 width.addEventListener('keyup', calcRatio, false)
-// Display Alert
-width.addEventListener('keyup', alertBox, false)
+
 // Close alert & Clear input
 resetBtn.forEach(function(event){
     event.addEventListener('click', reset, false)
