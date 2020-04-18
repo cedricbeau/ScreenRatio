@@ -91,8 +91,6 @@ function alertBox() {
   let alertDanger = document.querySelector('.alert-danger')
 
   isNaN(height.textContent) ? alertDanger.style.display = 'block' : alertDanger.style.display = 'none'
-  
-  //height.textContent === 'NaN' ? alertDanger.style.display = 'block' : alertDanger.style.display = 'none'
 
 }
 
