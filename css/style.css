@@ -16,13 +16,14 @@
 /* Icomoon font */
 @font-face {
   font-family: 'icomoon';
-  src:  url('../fonts/icomoon.eot?e5g4rs');
-  src:  url('../fonts/icomoon.eot?e5g4rs#iefix') format('embedded-opentype'),
-    url('../fonts/icomoon.ttf?e5g4rs') format('truetype'),
-    url('../fonts/icomoon.woff?e5g4rs') format('woff'),
-    url('../fonts/icomoon.svg?e5g4rs#icomoon') format('svg');
+  src:  url('../fonts/icomoon.eot?uwmnic');
+  src:  url('../fonts/icomoon.eot?uwmnic#iefix') format('embedded-opentype'),
+    url('../fonts/icomoon.ttf?uwmnic') format('truetype'),
+    url('../fonts/icomoon.woff?uwmnic') format('woff'),
+    url('../fonts/icomoon.svg?uwmnic#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
+  font-display: block;
 }
 
 [class^="icon-"], [class*=" icon-"] {
