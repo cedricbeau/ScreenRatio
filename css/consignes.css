@@ -39,6 +39,8 @@
   position: fixed;
   top: 210px;
   right: 0;
+  display: flex;
+  align-items: center;
   padding: .625em 1em .5em 1em;
   color: currentColor;
   background-color: #78909C;
@@ -53,21 +55,8 @@
   background-color: #141414;
 }
 
-.btn-consignes svg {
-  display: inline-block;
-	vertical-align: middle;
-	width: 1em;
-	height: 1em;
-	margin-top: -4px;
-	stroke-width: 0;
-	stroke: currentColor;
-	fill: currentColor;
-	will-change: transform;
-  transition: transform .4s;
-}
-
-.btn-consignes.is-down svg {
-  transform: rotate(180deg);
+.btn-consignes.is-down [class*="icon-"] {
+  transform: scale(-1);
 }
 
 /* ---------- Content ---------- */

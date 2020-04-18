@@ -23,11 +23,8 @@ function checkRatio() {
 
       // Do the calc ratio
       calcRatio()
-
     })
-
   })
-
 }
 
 // Display the calc box
@@ -38,7 +35,6 @@ function calcStyle() {
   calc.style.opacity = '1'
   calc.style.pointerEvents = 'all'
   calc.style.boxShadow = '0 0 20px rgba(00,00,00,0.35)'
-
 }
 
 // Do the calc ratio
@@ -61,9 +57,7 @@ function calcRatio() {
       } else if (event.id === '219') {
         valueHeight = Math.round((valueWidth/64)*27)
       }
-
     }
-
   })
 
   // Dispay height value
@@ -71,7 +65,6 @@ function calcRatio() {
 
   // Display alert box
   alertBox()
-
 }
 
 // Reset value
@@ -82,7 +75,6 @@ function reset() {
 
   // Close the alert box
   alertBox()
-
 }
 
 // Alert NaN
@@ -91,7 +83,6 @@ function alertBox() {
   let alertDanger = document.querySelector('.alert-danger')
 
   isNaN(height.textContent) ? alertDanger.style.display = 'block' : alertDanger.style.display = 'none'
-
 }
 
 // Event Listener

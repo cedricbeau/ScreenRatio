@@ -1,10 +1,8 @@
 /* ---------- Footer ---------- */
 footer {
-	width: 18.75rem;
+  width: 18.75rem;
   padding-top: 2em;
-  margin-right: auto;
-  margin-bottom: 2em;
-  margin-left: auto;
+  margin: 1em auto;
   font-size: 0.875em;
   text-align: center;
 }
@@ -14,7 +12,7 @@ footer div + div {
 }
 
 footer a {
-  color: currentColor;
+  color: #fff;
   text-decoration: none;
   transition: color .4s;
 }
@@ -23,11 +21,28 @@ footer a:hover {
   color: #03A9F4;
 }
 
-footer svg {
+footer [class^="icon-"], 
+footer [class*=" icon-"] {
   display: inline-block;
   vertical-align: middle;
-  stroke-width: 0;
-  stroke: currentColor;
-  fill: currentColor;
-  transition: fill .4s;
+}
+
+footer .me {
+  height: 17px;;
+}
+
+footer .icon-heart {
+  font-size: .75em;
+}
+
+@media only screen and (min-width: 768px) {
+	footer {
+		display: flex;
+    justify-content: space-between;
+		align-items: center;
+		margin: 2em auto;
+	}
+  footer div + div {
+    margin-top: 0;
+  }
 }
