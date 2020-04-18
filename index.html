@@ -14,8 +14,11 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
 	<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#4cb2d4">
 	<meta name="msapplication-TileColor" content="#4cb2d4">
-	<meta name="theme-color" content="#ffffff">   
-	
+  <meta name="theme-color" content="#ffffff">
+
+  <script src="js/react.production.min.js" crossorigin></script>
+  <script src="js/react-dom.production.min.js" crossorigin></script>
+
 	<link rel="manifest" href="manifest.json"></link>
 
   <!-- Critical Styles -->
@@ -26,21 +29,11 @@
 <body>
   <!-- Consignes -->
   <link rel="stylesheet" href="css/consignes.css">
-  <div class="consignes">
-    <h3>Consignes</h3>
-    <ol>
-      <li>Sélectionner un ratio</li>
-      <li>Renseigner la largeur (width) afin d'obtenir la hauteur (height).</li>
-      <li>Attention: ni lettres ni nombres à virgule.</li>
-    </ol>
-    <button type="button" class="btn btn-consignes">
-      <span class="icon-arrow-down2"></span>
-    </button>
-  </div>  
+  <div id="instructions"></div>
   <!-- Content -->
   <div class="content">
     <div class="content__Header">
-      <h1>Screen Ratio <span class="title-ratio"></span></h1>      
+      <h1>Screen Ratio <span class="title-ratio"></span></h1>
     </div>
     <div class="check">
       <div class="check-title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
@@ -100,9 +93,18 @@
 	</script>
 
 	<script src="sw.js" charset="utf-8"></script>
-	<script src="manup.js" charset="utf-8"></script>
-  <script src="js/consignes.js"></script>
+  <script src="manup.js" charset="utf-8"></script>
+  <!--
+        Ajouter JSX
+        1 - Install
+            1.1 - npm init -y
+            1.2 - npm install babel-cli@6 babel-preset-react-app@3
+        2 - Watch
+            2.1 - créer un dossier src dans lequel placer le fichier js
+            2.2 - npx babel --watch src --out-dir . --presets react-app/prod
+    --> 
   <script src="js/app.js"></script>
+  <script src="reactapp.js"></script>
 
 </body>
 </html>

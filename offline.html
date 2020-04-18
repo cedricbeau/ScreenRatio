@@ -14,81 +14,74 @@
 	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
 	<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#4cb2d4">
 	<meta name="msapplication-TileColor" content="#4cb2d4">
-	<meta name="theme-color" content="#ffffff"> 
+  <meta name="theme-color" content="#ffffff">
+  
+  <script src="js/react.production.min.js" crossorigin></script>
+  <script src="js/react-dom.production.min.js" crossorigin></script>
    
 	<link rel="manifest" href="manifest.json"></link>
 
   <!-- Critical Styles -->
   <style>/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */button,hr,input{overflow:visible}progress,sub,sup{vertical-align:baseline}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{padding:.35em .75em .625em}legend{color:inherit;display:table;max-width:100%;white-space:normal}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}</style>  
-  <link rel="stylesheet" href="css/style.css">  
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-	  <!-- Consignes -->
-    <link rel="stylesheet" href="css/consignes.css">
-    <div class="consignes">
-      <h3>Consignes</h3>
-      <ol>
-        <li>Sélectionner un ratio</li>
-        <li>Renseigner la largeur (width) afin d'obtenir la hauteur (height).</li>
-        <li>Attention: ni lettres ni nombres à virgule.</li>
-      </ol>
-      <button type="button" class="btn btn-consignes">
-        <span class="icon-arrow-down2"></span>
-      </button>
-    </div>  
-    <!-- Content -->
-    <div class="content">
-      <div class="content__Header">
-        <h1>Screen Ratio <span class="title-ratio"></span></h1>      
-      </div>
-      <div class="check">
-        <div class="check-title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
-        <div class="check-section">
-          <input type="radio" name="ratio" id="169"  class="check-radio">
-          <label for="169">16:9</label>
-        </div>
-        <div class="check-section">
-          <input type="radio" name="ratio" id="219"  class="check-radio">
-          <label for="219">21:9</label>
-        </div>
-        <div class="check-section">
-          <input type="radio" name="ratio" id="43" class="check-radio" >
-          <label for="43">4:3</label>
-        </div>
-      </div>
-      <div class="calc">
-        <div class="calc__section">
-          <label for="width" class="label">Width (px)</label>
-          <input type="text" id="width" class="input">
-        </div>
-        <div class="calc__section">
-          <span class="label">Height (px)</span>
-          <span id="height" class="input"></span>
-        </div>
-        <div class="alert alert-danger">Touche non valide. Veuillez séléctionner les touches de 0 à 9. <button class="close-alert reset" type="button">X</button>
-        </div>
-        <div class="calc__section">
-          <button type="button" class="btn btn-reset reset">Reset</button>
-        </div>
-      </div>
-      <!-- Footer -->
-      <link rel="stylesheet" href="css/footer.css">
-      <footer class="container">
-        <div class="me">
-          <script type="text/javascript">document.write(new Date().getFullYear());</script>
-          - <span class="icon-embed"></span> avec <span class="icon-heart"></span> par <a href="https://cedricbeau.pro/" title="cedricbeau.pro">Cédric Beau</a>
-        </div>
-        <div class="github">
-          <a href="https://github.com/cedricbeau/Aspect-Ratio">
-            <span class="icon-github"></span>
-          </a>
-        </div>
-      </footer>
+  <!-- Consignes -->
+  <link rel="stylesheet" href="css/consignes.css">
+  <div id="instructions"></div>
+  <!-- Content -->
+  <div class="content">
+    <div class="content__Header">
+      <h1>Screen Ratio <span class="title-ratio"></span></h1>
     </div>
+    <div class="check">
+      <div class="check-title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
+      <div class="check-section">
+        <input type="radio" name="ratio" id="169"  class="check-radio">
+        <label for="169">16:9</label>
+      </div>
+			<div class="check-section">
+        <input type="radio" name="ratio" id="219"  class="check-radio">
+        <label for="219">21:9</label>
+      </div>
+      <div class="check-section">
+        <input type="radio" name="ratio" id="43" class="check-radio" >
+        <label for="43">4:3</label>
+      </div>
+    </div>
+    <div class="calc">
+      <div class="calc__section">
+        <label for="width" class="label">Width (px)</label>
+        <input type="text" id="width" class="input">
+      </div>
+      <div class="calc__section">
+        <span class="label">Height (px)</span>
+        <span id="height" class="input"></span>
+      </div>
+      <div class="alert alert-danger">Touche non valide. Veuillez séléctionner les touches de 0 à 9. <button class="close-alert reset" type="button">X</button>
+      </div>
+      <div class="calc__section">
+        <button type="button" class="btn btn-reset reset">Reset</button>
+      </div>
+    </div>
+    <!-- Footer -->
+    <link rel="stylesheet" href="css/footer.css">
+    <footer class="container">
+      <div class="me">
+        <script type="text/javascript">document.write(new Date().getFullYear());</script>
+        - <span class="icon-embed"></span> avec <span class="icon-heart"></span> par <a href="https://cedricbeau.pro/" title="cedricbeau.pro">Cédric Beau</a>
+      </div>
+      <div class="github">
+        <a href="https://github.com/cedricbeau/Aspect-Ratio">
+          <span class="icon-github"></span>
+        </a>
+      </div>
+    </footer>
+  </div>
 
-  <script  src="js/consignes.js"></script>
-  <script  src="js/app.js"></script>
+  <script src="js/app.js"></script>
+  <script src="reactapp.js"></script>
 
 </body>
 </html>

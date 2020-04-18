@@ -4,12 +4,11 @@
   z-index: 1000;
   right: 0;
   left: 0;
-  transform: translateY(-210px);
-  height: 210px;
+  transform: translateY(-200px);
+  height: 200px;
   padding: 1em;
   color: #ccc;
   background-color: #141414;
-	will-change: transform;
   transition: transform .4s;
 }
 
@@ -17,7 +16,7 @@
   transform: translateY(0);
 }
 
-.consignes h3 {
+.consignes h2 {
   margin-top: 0;
 }
 
@@ -37,11 +36,9 @@
 
 .btn-consignes {
   position: fixed;
-  top: 210px;
+  top: 200px;
   right: 0;
-  display: flex;
-  align-items: center;
-  padding: .625em 1em .5em 1em;
+  padding: .425em 1em .65em 1em;
   color: currentColor;
   background-color: #78909C;
   border-radius: 0;
@@ -51,20 +48,6 @@
 }
 
 .btn-consignes:hover,
-.btn-consignes.is-down{
+.consignes.is-down .btn-consignes {
   background-color: #141414;
-}
-
-.btn-consignes.is-down [class*="icon-"] {
-  transform: scale(-1);
-}
-
-/* ---------- Content ---------- */
-.content {
-	will-change: transform;
-  transition: transform .4s;
-}
-
-.content.is-down {
-  transform: translateY(210px);
 }
