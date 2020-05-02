@@ -29,7 +29,8 @@
     <link rel="stylesheet" href="css/consignes.min.css">
     <div class="consignes"
          v-bind:class="{ visible: isVisible }">
-      <div class="consignes__content">
+      <div class="consignes__content"
+           v-if="isVisible">
         <h2 class="consignes__title">Consignes</h2>
         <ol class="consignes__list">
           <li v-for="instruction in instructions"
@@ -46,8 +47,10 @@
     <!-- Content -->
     <div class="content"
          v-bind:class="{ visible: isVisible }">
-      <div class="content__Header">
-        <h1>{{ title }} <span class="title-ratio">{{ ratio }}</span></h1>
+      <div class="content__header">
+        <h1>{{ title }}
+          <span class="title-ratio">{{ ratio }}</span>
+        </h1>
       </div>
       <div class="check">
         <div class="check-title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
@@ -65,31 +68,33 @@
         </div>
       </div>
       <link rel="stylesheet" href="css/calc-box.min.css">
-      <div class="calc"
-           v-if="isDisplay">
-        <div class="calc__section">
-          <label for="width" class="label">Width (px)</label>
-          <input type="text"
-                 id="width"
-                 class="input"
-                 v-on:keyup="calcRatio">
+      <transition name="fade">
+        <div class="calc"
+            v-if="isDisplay">
+          <div class="calc__section">
+            <label for="width" class="label">Width (px)</label>
+            <input type="text"
+                  id="width"
+                  class="input"
+                  v-on:keyup="calcRatio">
+          </div>
+          <div class="calc__section">
+            <span class="label">Height (px)</span>
+            <span id="height" class="input"></span>
+          </div>
+          <div class="alert alert-danger"
+              v-if="hasError">Touche non valide. Veuillez séléctionner les touches de 0 à 9.
+              <button class="close-alert reset"
+                      type="button"
+                      v-on:click="resetValue">X</button>
+          </div>
+          <div class="calc__section action">
+            <button type="button"
+                    class="btn btn-reset reset"
+                    v-on:click="resetValue">Reset</button>
+          </div>
         </div>
-        <div class="calc__section">
-          <span class="label">Height (px)</span>
-          <span id="height" class="input"></span>
-        </div>
-        <div class="alert alert-danger"
-             v-if="hasError">Touche non valide. Veuillez séléctionner les touches de 0 à 9.
-             <button class="close-alert reset"
-                     type="button"
-                     v-on:click="resetValue">X</button>
-        </div>
-        <div class="calc__section action">
-          <button type="button"
-                  class="btn btn-reset reset"
-                  v-on:click="resetValue">Reset</button>
-        </div>
-      </div>
+      </transition>
       <!-- Footer -->
       <link rel="stylesheet" href="css/footer.min.css">
       <footer class="container">
