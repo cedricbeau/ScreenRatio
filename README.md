@@ -10,6 +10,13 @@ Outil en ligne permettant de calculer le ratio 16:9, 21:9 ou 4:3 à partir de la
 
 ## Modifications
 
+**02/05/2020**
+
+* Suppression de la librairie React
+* Ajout du Framework Vue.js
+* Refactorisation du JavaScript Vue.js
+* Conversion du CSS en SCSS
+
 **15/04/2019**
 
 * Refactorisation du JavaScript
