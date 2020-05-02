@@ -16,8 +16,7 @@
 	<meta name="msapplication-TileColor" content="#4cb2d4">
   <meta name="theme-color" content="#ffffff">
 
-  <script src="js/react.production.min.js" crossorigin></script>
-  <script src="js/react-dom.production.min.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
 	<link rel="manifest" href="manifest.json"></link>
 
@@ -27,61 +26,90 @@
 </head>
 
 <body>
-  <!-- Consignes -->
-  <link rel="stylesheet" href="css/consignes.css">
-  <div id="instructions"></div>
-  <!-- Content -->
-  <div class="content">
-    <div class="content__Header">
-      <h1>Screen Ratio <span class="title-ratio"></span></h1>
+  <div id="app">
+    <!-- Consignes -->
+    <link rel="stylesheet" href="css/consignes.min.css">
+    <div class="consignes"
+         v-bind:class="{ visible: isVisible }">
+      <div class="consignes__content">
+        <h2 class="consignes__title">Consignes</h2>
+        <ol class="consignes__list">
+          <li v-for="instruction in instructions"
+              :key="instruction.id">{{ instruction.value }}</li>
+        </ol>
+      </div>
+      <button type="button"
+              class="btn btn-consignes"
+              v-bind:class="{ visible: isVisible }"
+              v-on:click="toggleInstructions">
+        <span class="icon-arrow-up2"></span>
+      </button>
     </div>
-    <div class="check">
-      <div class="check-title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
-      <div class="check-section">
-        <input type="radio" name="ratio" id="169"  class="check-radio">
-        <label for="169">16:9</label>
+    <!-- Content -->
+    <div class="content"
+         v-bind:class="{ visible: isVisible }">
+      <div class="content__Header">
+        <h1>{{ title }} <span class="title-ratio">{{ ratio }}</span></h1>
       </div>
-			<div class="check-section">
-        <input type="radio" name="ratio" id="219"  class="check-radio">
-        <label for="219">21:9</label>
+      <div class="check">
+        <div class="check-title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
+        <div class="check-section"
+             v-for="(val, key) in ratios"
+             :key="key">
+             <input type="radio"
+                    name="ratio"
+                    :value="val"
+                    :id="key"
+                    class="check-radio"
+                    :checked="ratio === 'val'"
+                    @change="onChange($event.target.value)">
+              <label :for="key">{{ val }}</label>
+        </div>
       </div>
-      <div class="check-section">
-        <input type="radio" name="ratio" id="43" class="check-radio" >
-        <label for="43">4:3</label>
+      <link rel="stylesheet" href="css/calc-box.min.css">
+      <div class="calc"
+           v-if="isDisplay">
+        <div class="calc__section">
+          <label for="width" class="label">Width (px)</label>
+          <input type="text"
+                 id="width"
+                 class="input"
+                 v-on:keyup="calcRatio">
+        </div>
+        <div class="calc__section">
+          <span class="label">Height (px)</span>
+          <span id="height" class="input"></span>
+        </div>
+        <div class="alert alert-danger"
+             v-if="hasError">Touche non valide. Veuillez séléctionner les touches de 0 à 9.
+             <button class="close-alert reset"
+                     type="button"
+                     v-on:click="resetValue">X</button>
+        </div>
+        <div class="calc__section action">
+          <button type="button"
+                  class="btn btn-reset reset"
+                  v-on:click="resetValue">Reset</button>
+        </div>
       </div>
+      <!-- Footer -->
+      <link rel="stylesheet" href="css/footer.min.css">
+      <footer class="container">
+        <div class="me">
+          <script type="text/javascript">document.write(new Date().getFullYear());</script>
+          - <span class="icon-embed2"></span> avec <span class="icon-heart"></span> par <a :href="links.site" :title="links.siteTitle">Cédric Beau</a>
+        </div>
+        <div class="github">
+          <a :url="links.repo"
+             :title="links.repoTitle">
+            <span class="icon-github"></span>
+          </a>
+        </div>
+      </footer>
     </div>
-    <div class="calc">
-      <div class="calc__section">
-        <label for="width" class="label">Width (px)</label>
-        <input type="text" id="width" class="input">
-      </div>
-      <div class="calc__section">
-        <span class="label">Height (px)</span>
-        <span id="height" class="input"></span>
-      </div>
-      <div class="alert alert-danger">Touche non valide. Veuillez séléctionner les touches de 0 à 9. <button class="close-alert reset" type="button">X</button>
-      </div>
-      <div class="calc__section">
-        <button type="button" class="btn btn-reset reset">Reset</button>
-      </div>
-    </div>
-    <!-- Footer -->
-    <link rel="stylesheet" href="css/footer.css">
-    <footer class="container">
-      <div class="me">
-        <script type="text/javascript">document.write(new Date().getFullYear());</script>
-        - <span class="icon-embed2"></span> avec <span class="icon-heart"></span> par <a href="https://cedricbeau.pro/" title="cedricbeau.pro">Cédric Beau</a>
-      </div>
-      <div class="github">
-        <a href="https://github.com/cedricbeau/ScreenRatio">
-          <span class="icon-github"></span>
-        </a>
-      </div>
-    </footer>
   </div>
 
   <script src="js/app.js"></script>
-  <script src="reactapp.js"></script>
 
 </body>
 </html>

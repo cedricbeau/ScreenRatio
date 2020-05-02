@@ -6,96 +6,123 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="description" content="Outil en ligne permettant de calculer le ratio 16:9 ou 4:3 à partir de la largeur connue.">
-	<meta name="author" content="Cédric Beau">
+  <meta name="author" content="Cédric Beau">
   <title>Screen Ratio</title>
 
-	<link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
-	<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
-	<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
-	<link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#4cb2d4">
-	<meta name="msapplication-TileColor" content="#4cb2d4">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#4cb2d4">
+  <meta name="msapplication-TileColor" content="#4cb2d4">
   <meta name="theme-color" content="#ffffff">
 
-  <script src="js/react.production.min.js" crossorigin></script>
-  <script src="js/react-dom.production.min.js" crossorigin></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
-	<link rel="manifest" href="manifest.json"></link>
+  <link rel="manifest" href="manifest.json"></link>
 
-  <!-- Critical Styles -->
-  <style>/*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */button,hr,input{overflow:visible}progress,sub,sup{vertical-align:baseline}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0}code,kbd,pre,samp{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;text-decoration:underline dotted}b,strong{font-weight:bolder}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:ButtonText dotted 1px}fieldset{padding:.35em .75em .625em}legend{color:inherit;display:table;max-width:100%;white-space:normal}textarea{overflow:auto}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}</style>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/styles.min.css">
 </head>
 
 <body>
-  <!-- Consignes -->
-  <link rel="stylesheet" href="css/consignes.css">
-  <div id="instructions"></div>
-  <!-- Content -->
-  <div class="content">
-    <div class="content__Header">
-      <h1>Screen Ratio <span class="title-ratio"></span></h1>
+  <div id="app">
+    <!-- Consignes -->
+    <link rel="stylesheet" href="css/consignes.min.css">
+    <div class="consignes"
+         v-bind:class="{ visible: isVisible }">
+      <div class="consignes__content">
+        <h2 class="consignes__title">Consignes</h2>
+        <ol class="consignes__list">
+          <li v-for="instruction in instructions"
+              :key="instruction.id">{{ instruction.value }}</li>
+        </ol>
+      </div>
+      <button type="button"
+              class="btn btn-consignes"
+              v-bind:class="{ visible: isVisible }"
+              v-on:click="toggleInstructions">
+        <span class="icon-arrow-up2"></span>
+      </button>
     </div>
-    <div class="check">
-      <div class="check-title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
-      <div class="check-section">
-        <input type="radio" name="ratio" id="169"  class="check-radio">
-        <label for="169">16:9</label>
+    <!-- Content -->
+    <div class="content"
+         v-bind:class="{ visible: isVisible }">
+      <div class="content__Header">
+        <h1>{{ title }} <span class="title-ratio">{{ ratio }}</span></h1>
       </div>
-			<div class="check-section">
-        <input type="radio" name="ratio" id="219"  class="check-radio">
-        <label for="219">21:9</label>
+      <div class="check">
+        <div class="check-title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
+        <div class="check-section"
+             v-for="(val, key) in ratios"
+             :key="key">
+             <input type="radio"
+                    name="ratio"
+                    :value="val"
+                    :id="key"
+                    class="check-radio"
+                    :checked="ratio === 'val'"
+                    @change="onChange($event.target.value)">
+              <label :for="key">{{ val }}</label>
+        </div>
       </div>
-      <div class="check-section">
-        <input type="radio" name="ratio" id="43" class="check-radio" >
-        <label for="43">4:3</label>
+      <link rel="stylesheet" href="css/calc-box.min.css">
+      <div class="calc"
+           v-if="isDisplay">
+        <div class="calc__section">
+          <label for="width" class="label">Width (px)</label>
+          <input type="text"
+                 id="width"
+                 class="input"
+                 v-on:keyup="calcRatio">
+        </div>
+        <div class="calc__section">
+          <span class="label">Height (px)</span>
+          <span id="height" class="input"></span>
+        </div>
+        <div class="alert alert-danger"
+             v-if="hasError">Touche non valide. Veuillez séléctionner les touches de 0 à 9.
+             <button class="close-alert reset"
+                     type="button"
+                     v-on:click="resetValue">X</button>
+        </div>
+        <div class="calc__section action">
+          <button type="button"
+                  class="btn btn-reset reset"
+                  v-on:click="resetValue">Reset</button>
+        </div>
       </div>
+      <!-- Footer -->
+      <link rel="stylesheet" href="css/footer.min.css">
+      <footer class="container">
+        <div class="me">
+          <script type="text/javascript">document.write(new Date().getFullYear());</script>
+          - <span class="icon-embed2"></span> avec <span class="icon-heart"></span> par <a :href="links.site" :title="links.siteTitle">Cédric Beau</a>
+        </div>
+        <div class="github">
+          <a :url="links.repo"
+             :title="links.repoTitle">
+            <span class="icon-github"></span>
+          </a>
+        </div>
+      </footer>
     </div>
-    <div class="calc">
-      <div class="calc__section">
-        <label for="width" class="label">Width (px)</label>
-        <input type="text" id="width" class="input">
-      </div>
-      <div class="calc__section">
-        <span class="label">Height (px)</span>
-        <span id="height" class="input"></span>
-      </div>
-      <div class="alert alert-danger">Touche non valide. Veuillez séléctionner les touches de 0 à 9. <button class="close-alert reset" type="button">X</button>
-      </div>
-      <div class="calc__section">
-        <button type="button" class="btn btn-reset reset">Reset</button>
-      </div>
-    </div>
-    <!-- Footer -->
-    <link rel="stylesheet" href="css/footer.css">
-    <footer class="container">
-      <div class="me">
-        <script type="text/javascript">document.write(new Date().getFullYear());</script>
-        - <span class="icon-embed2"></span> avec <span class="icon-heart"></span> par <a href="https://cedricbeau.pro/" title="cedricbeau.pro">Cédric Beau</a>
-      </div>
-      <div class="github">
-        <a href="https://github.com/cedricbeau/ScreenRatio">
-          <span class="icon-github"></span>
-        </a>
-      </div>
-    </footer>
   </div>
-	<script>
-		//This is the "Offline page" service worker
-		if ('serviceWorker' in navigator) {
-		  navigator.serviceWorker.register('sw.js', { scope: './' }).then(function(reg) {
-		    // registration worked
-		    console.log('Registration succeeded. Scope is ' + reg.scope);
-		  }).catch(function(error) {
-		    // registration failed
-		    console.log('Registration failed with ' + error);
-		  });
-		};
-	</script>
 
-	<script src="sw.js" charset="utf-8"></script>
+  <script>
+    //This is the "Offline page" service worker
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js', { scope: './' }).then(function(reg) {
+        // registration worked
+        console.log('Registration succeeded. Scope is ' + reg.scope);
+      }).catch(function(error) {
+        // registration failed
+        console.log('Registration failed with ' + error);
+      });
+    };
+  </script>
+
+  <script src="sw.js" charset="utf-8"></script>
   <script src="manup.js" charset="utf-8"></script>
   <script src="js/app.js"></script>
-  <script src="reactapp.js"></script>
 
 </body>
 </html>

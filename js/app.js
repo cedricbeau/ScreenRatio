@@ -1,95 +1,136 @@
-'use strict';
+var app = new Vue({
+  el: "#app",
 
-let checkRadio = document.querySelectorAll('.check-radio')
-let width = document.querySelector('#width')  
-let height = document.querySelector('#height')
-let resetBtn = document.querySelectorAll('.reset')
+  data: {
+    // Site title
+    title: "Screen Ratio",
 
-checkRatio()
+    // Links site & Repo
+    links: {
+      site: "https://cedricbeau.pro/",
+      siteTitle: "Lien vers mon site perso",
+      repo: "https://github.com/cedricbeau/ScreenRatio",
+      repoTitle: "Lien vers le repo GitHub du projet",
+    },
 
-function checkRatio() {
+    // Consignes
+    instructions: [
+      {
+        id: 0,
+        value: "Sélectionner un ratio.",
+      },
+      {
+        id: 1,
+        value:
+          "Renseigner la largeur (width) afin d'obtenir la hauteur (height).",
+      },
+      {
+        id: 2,
+        value: "Attention: ni lettres ni nombres à virgule.",
+      },
+    ],
 
-  let titleRatio = document.querySelector('.title-ratio')
-  
-  checkRadio.forEach(function(e){
+    isVisible: false,
+    toggleConsignesClass: "is-down",
 
-    e.addEventListener('change', function(e) {
+    ratio: '',
+    ratios : {
+      169: '16:9',
+      219: '21:9',
+      43: '4:3'
+    },
 
-      // Add ratio in page title
-      titleRatio.innerText = e.target.nextElementSibling.innerText
+    isDisplay: false,
 
+    hasError: false
+  },
+
+  // Methods
+  methods: {
+
+    /**
+     * Display the instructions box
+     */
+    toggleInstructions: function () {
+      this.isVisible = !this.isVisible;
+    },
+
+    /**
+     *
+     * @param {*} e
+     */
+    onChange: function(e) {
+      this.ratio = e
       // Display the calc box
-      calcStyle()
-
+      this.displayCalcBox()
       // Do the calc ratio
-      calcRatio()
-    })
-  })
-}
+      this.calcRatio(e)
+    },
 
-// Display the calc box
-function calcStyle() {
+    /**
+     * Display the calc box
+     */
+    displayCalcBox: function () {
+      this.isDisplay = true
+    },
 
-  let calc = document.querySelector('.calc')
+    /**
+     * Do the calc ratio
+     */
+    calcRatio: function (e) {
 
-  calc.style.opacity = '1'
-  calc.style.pointerEvents = 'all'
-  calc.style.boxShadow = '0 0 20px rgba(00,00,00,0.35)'
-}
+      // Get the input value
+      let checkRadio = document.querySelectorAll('.check-radio')
+      let width = document.querySelector('#width')
+      let height = document.querySelector('#height')
+      let valueWidth = width.value
+      let valueHeight
+      valueWidth *= 1
 
-// Do the calc ratio
-function calcRatio() {
+      // The calc ratio depend of checbox checked
+      checkRadio.forEach(function(event){
 
-	// Get the input value
-  let valueWidth = width.value
-  valueWidth *= 1
-  let valueHeight
+        if(event.checked === true) {
 
-  // The calc ratio depend of checbox checked
-  checkRadio.forEach(function(event){
+          if(event.id === '43') {
+            valueHeight = Math.round((valueWidth/4)*3)
+          } else if(event.id === '169') {
+            valueHeight = Math.round((valueWidth/16)*9)
+          } else if (event.id === '219') {
+            valueHeight = Math.round((valueWidth/64)*27)
+          }
+        }
+      })
 
-    if(event.checked === true) {
+      height.innerText = valueHeight
 
-      if(event.id === '43') {
-        valueHeight = Math.round((valueWidth/4)*3)
-      } else if(event.id === '169') {
-        valueHeight = Math.round((valueWidth/16)*9)
-      } else if (event.id === '219') {
-        valueHeight = Math.round((valueWidth/64)*27)
-      }
+      // Display alert box
+      this.alertBox()
+    },
+
+    /**
+     * Reset value
+     */
+    resetValue: function () {
+
+      let width = document.querySelector('#width')
+      let height = document.querySelector('#height')
+
+      width.value = ''
+      height.innerText = ''
+
+      // Close the alert box
+      this.alertBox()
+    },
+
+    /**
+     * Alert NaN
+     */
+    alertBox: function () {
+
+      let height = document.querySelector('#height')
+
+      isNaN(height.textContent) ? this.hasError = !this.hasError : this.hasError = false
     }
-  })
-
-  // Dispay height value
-  height.innerText = valueHeight
-
-  // Display alert box
-  alertBox()
-}
-
-// Reset value
-function reset() {
-
-  width.value = ''
-  height.innerText = ''
-
-  // Close the alert box
-  alertBox()
-}
-
-// Alert NaN
-function alertBox() {
-
-  let alertDanger = document.querySelector('.alert-danger')
-
-  isNaN(height.textContent) ? alertDanger.style.display = 'block' : alertDanger.style.display = 'none'
-}
-
-// Event Listener
-// Do calc ratio
-width.addEventListener('keyup', calcRatio, false)
-
-// Close alert & Clear input
-resetBtn.forEach(function(event){
-    event.addEventListener('click', reset, false)
-})
+  }
+});
