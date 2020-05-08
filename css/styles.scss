@@ -112,18 +112,18 @@ body {
   width: 98%;
   max-width: var(--container-width);
   margin: 0 auto;
-}
 
-.content__header {
-  position: relative;
-}
+  &__header {
+    position: relative;
 
-h1 {
-  padding: 2.5rem 0;
-  margin: 0;
-  font-weight: 400;
-	color: var(--white);
-  text-align: center;
+    h1 {
+      padding: 2.5rem 0;
+      margin: 0;
+      font-weight: 400;
+      color: var(--white);
+      text-align: center;
+    }
+  }
 }
 
 /* ---------- Radios ---------- */
