@@ -25,89 +25,99 @@
 
 <body>
   <div id="app">
+    <!-- Alerte -->
+    <link rel="stylesheet" href="css/alerte.min.css">
+    <transition name="slide">
+      <div class="alert alert-danger"
+          v-if="hasError">
+          <p>Touche non valide. Veuillez séléctionner les touches de 0 à 9.</p>
+          <button class="close-alert reset"
+                  type="button"
+                  v-on:click="resetValue">
+            <span class="icon-cross"></span>
+          </button>
+      </div>
+    </transition>
     <!-- Consignes -->
-    <link rel="stylesheet" href="css/consignes.min.css">
-    <div class="consignes"
+    <link rel="stylesheet" href="css/instructions.min.css">
+    <div class="instructions"
          v-bind:class="{ visible: isVisible }">
-      <div class="consignes__content"
+      <div class="instructions__content"
            v-if="isVisible">
-        <h2 class="consignes__title">Consignes</h2>
-        <ol class="consignes__list">
+        <h2 class="instructions__title">Consignes</h2>
+        <ol class="instructions__list">
           <li v-for="instruction in instructions"
               :key="instruction.id">{{ instruction.value }}</li>
         </ol>
       </div>
       <button type="button"
-              class="btn btn-consignes"
+              class="btn btn-instructions"
               v-bind:class="{ visible: isVisible }"
               v-on:click="toggleInstructions">
-        <span class="icon-arrow-up2"></span>
+        <span class="icon-arrow-down2"></span>
       </button>
     </div>
     <!-- Content -->
     <div class="content"
          v-bind:class="{ visible: isVisible }">
-      <div class="content__header">
+      <header class="content__header">
         <h1>{{ title }}
           <span class="title-ratio">{{ ratio }}</span>
         </h1>
-      </div>
-      <div class="check">
-        <div class="check-title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
-        <div class="check-section"
-             v-for="(val, key) in ratios"
-             :key="key">
-             <input type="radio"
-                    name="ratio"
-                    :value="val"
-                    :id="key"
-                    class="check-radio"
-                    :checked="ratio === 'val'"
-                    @change="onChange($event.target.value)">
-              <label :for="key">{{ val }}</label>
-        </div>
-      </div>
-      <link rel="stylesheet" href="css/calc-box.min.css">
-      <transition name="fade">
-        <div class="calc"
-            v-if="isDisplay">
-          <div class="calc__section">
-            <label for="width" class="label">Width (px)</label>
-            <input type="text"
-                  id="width"
-                  class="input"
-                  v-on:keyup="calcRatio">
-          </div>
-          <div class="calc__section">
-            <span class="label">Height (px)</span>
-            <input id="height" class="input input--height" disabled>
-          </div>
-          <div class="alert alert-danger"
-              v-if="hasError">Touche non valide. Veuillez séléctionner les touches de 0 à 9.
-              <button class="close-alert reset"
-                      type="button"
-                      v-on:click="resetValue">X</button>
-          </div>
-          <div class="calc__section action">
-            <button type="button"
-                    class="btn btn-reset reset"
-                    v-on:click="resetValue">Reset</button>
+      </header>
+      <main class="content__main">
+        <div class="check">
+          <div class="check__title">Sélectionner un ratio <span class="icon-arrow-right2"></span></div>
+          <div class="check__content">
+            <div class="check__section"
+                v-for="(val, key) in ratios"
+                :key="key">
+                <input type="radio"
+                        name="ratio"
+                        :value="val"
+                        :id="key"
+                        class="check-radio"
+                        :checked="ratio === 'val'"
+                        @change="onChange($event.target.value)">
+                  <label :for="key">{{ val }}</label>
+            </div>
           </div>
         </div>
-      </transition>
+        <link rel="stylesheet" href="css/content.min.css">
+        <transition name="fade">
+          <div class="calc"
+              v-if="isDisplay">
+            <div class="calc__section">
+              <label for="width" class="label">width</label>
+              <input type="text"
+                    id="width"
+                    class="input"
+                    v-on:keyup="calcRatio">
+            </div>
+            <div class="calc__section">
+              <span class="label">height</span>
+              <input id="height" class="input input--height" disabled>
+            </div>
+            <div class="calc__section action">
+              <button type="button"
+                      class="btn btn-reset reset"
+                      v-on:click="resetValue">Reset</button>
+            </div>
+          </div>
+        </transition>
+      </main>
       <!-- Footer -->
-      <link rel="stylesheet" href="css/footer.min.css">
-      <footer class="container">
+      <link rel="stylesheet" href="css/foot.min.css">
+      <footer class="content__footer">
         <div class="me">
           <script type="text/javascript">document.write(new Date().getFullYear());</script>
           - <span class="icon-embed2"></span> avec <span class="icon-heart"></span> par <a :href="links.site" :title="links.siteTitle">Cédric Beau</a>
         </div>
-        <div class="github">
-          <a :url="links.repo"
-             :title="links.repoTitle">
-            <span class="icon-github"></span>
-          </a>
-        </div>
+        <a :url="links.repo"
+           :title="links.repoTitle"
+           class="github">
+          <span class="icon-github"></span>
+        </a>
       </footer>
     </div>
   </div>
