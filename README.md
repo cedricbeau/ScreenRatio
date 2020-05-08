@@ -12,6 +12,7 @@ Outil en ligne permettant de calculer le ratio 16:9, 21:9 ou 4:3 à partir de la
 
 **08/05/2020**
 
+* Ajout de la detection  d'Internet Explorer
 * Mise à jour du nom des fichiers scss
 * Mise à jour des styles
 * Mise à jour de la font Icomoon
