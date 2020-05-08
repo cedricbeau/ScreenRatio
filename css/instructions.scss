@@ -1,0 +1,80 @@
+/* Variables */
+
+$-c-blue: #78909c;
+$-c-grey: #ccc;
+$-c-black: #141414;
+
+/* ---------- Consigne ---------- */
+
+.instructions {
+  position: fixed;
+  z-index: 2;
+  right: 0;
+  left: 0;
+  transform: translateY(-200px);
+  height: 200px;
+  padding: 1em;
+  color: $-c-grey;
+  background-color: $-c-black;
+  transition: transform .4s;
+
+  &.visible {
+    transform: translateY(0);
+  }
+
+  h2 {
+    margin-top: 0;
+  }
+
+  li + li {
+    margin-top: 0.625em;
+  }
+
+  a {
+    color: currentColor;
+    text-decoration: underline;
+    transition: opacity .4s;
+
+    &:hover {
+      opacity: .6;
+    }
+  }
+
+  .btn-instructions {
+    position: fixed;
+    top: 200px;
+    right: 0;
+    padding: .425em 1em .65em 1em;
+    color: currentColor;
+    background-color: $-c-blue;
+    border-radius: 0;
+    border-bottom-left-radius: 0.25em;
+    transition: background-color .4s;
+
+    [class*="icon-"] {
+      display: block;
+      transition: transform .4s;
+      pointer-events: none;
+    }
+
+    &:hover,
+    &.visible {
+      background-color: $-c-black;
+    }
+
+    &.visible {
+
+      [class*="icon-"] {
+        transform: scaleY(-1);
+      }
+    }
+  }
+}
+
+.content {
+  transition: transform .4s;
+
+  &.visible {
+    transform: translateY(200px);
+  }
+}

@@ -1,0 +1,54 @@
+/* Variablles */
+
+$-c-white: #fff;
+$-c-red-medium: #e57373;
+
+/* ---------- Alert ---------- */
+
+.alert {
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  width: 100%;
+  padding: 1.25em;
+  font-size: 1em;
+
+  &.alert-danger {
+    color: $-c-white;
+    background-color: $-c-red-medium;
+  }
+
+  p {
+    margin: 0 1em 0;
+  }
+}
+
+.close-alert {
+  -webkit-appearance: none;
+  padding: 0;
+  margin: 0;
+  color: currentColor;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* ---------- Transition ---------- */
+
+.slide-enter-active,
+.slide-leave-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity .4s, transform .5s;
+}
+
+.slide-enter,
+.slide-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+  transform: translateY(-100px);
+}

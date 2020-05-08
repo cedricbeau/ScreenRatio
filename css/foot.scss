@@ -1,0 +1,36 @@
+/* Variablles */
+
+$-c-white: #fff;
+$-c-blue: #03A9F4;
+
+/* ---------- Footer ---------- */
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 18.75em;
+  margin: 2em auto;
+  font-size: 1em;
+  text-align: center;
+
+  a {
+    color: $-c-white;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color .4s;
+
+    &:hover {
+      color: #03A9F4;
+    }
+  }
+
+  [class*=" icon-"] {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .icon-heart {
+    font-size: .75em;
+  }
+}
