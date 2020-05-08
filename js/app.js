@@ -31,7 +31,6 @@ var app = new Vue({
     ],
 
     isVisible: false,
-    toggleConsignesClass: "is-down",
 
     ratio: '',
     ratios : {
