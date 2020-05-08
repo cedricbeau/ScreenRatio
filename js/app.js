@@ -102,7 +102,7 @@ var app = new Vue({
         }
       })
 
-      height.innerText = valueHeight
+      height.value = valueHeight
 
       // Display alert box
       this.alertBox()
@@ -117,7 +117,7 @@ var app = new Vue({
       let height = document.querySelector('#height')
 
       width.value = ''
-      height.innerText = ''
+      height.value = ''
 
       // Close the alert box
       this.alertBox()
@@ -130,7 +130,7 @@ var app = new Vue({
 
       let height = document.querySelector('#height')
 
-      isNaN(height.textContent) ? this.hasError = !this.hasError : this.hasError = false
+      isNaN(height.value) ? this.hasError = !this.hasError : this.hasError = false
     }
   }
 });
