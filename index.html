@@ -16,7 +16,7 @@
   <meta name="msapplication-TileColor" content="#4cb2d4">
   <meta name="theme-color" content="#ffffff">
 
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="js/vue.min.js"></script>
 
   <link rel="manifest" href="manifest.json"></link>
 
@@ -80,13 +80,13 @@
           </div>
           <div class="calc__section">
             <span class="label">Height (px)</span>
-            <span id="height" class="input"></span>
+            <span id="height" class="input input--height"></span>
           </div>
           <div class="alert alert-danger"
               v-if="hasError">Touche non valide. Veuillez séléctionner les touches de 0 à 9.
               <button class="close-alert reset"
                       type="button"
-                      v-on:click="resetValue">X</button>
+                      v-on:click="resetValue"></button>
           </div>
           <div class="calc__section action">
             <button type="button"
