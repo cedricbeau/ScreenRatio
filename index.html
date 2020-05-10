@@ -32,7 +32,7 @@
       <transition name="slide">
         <div class="alert alert-danger"
             v-if="hasError">
-            <p>Touche non valide. Veuillez séléctionner les touches de 0 à 9.</p>
+            <p>{{ errorMessage }}</p>
             <button class="close-alert reset"
                     type="button"
                     v-on:click="resetValue">

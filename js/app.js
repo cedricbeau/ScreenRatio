@@ -13,6 +13,9 @@ var app = new Vue({
       repoTitle: "Lien vers le repo GitHub du projet",
     },
 
+    // Error
+    errorMessage: 'Touche non valide. Veuillez séléctionner les touches de 0 à 9.',
+
     // Instructions
     instructions: [
       {
