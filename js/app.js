@@ -13,7 +13,7 @@ var app = new Vue({
       repoTitle: "Lien vers le repo GitHub du projet",
     },
 
-    // Consignes
+    // Instructions
     instructions: [
       {
         id: 0,
