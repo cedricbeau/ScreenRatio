@@ -14,7 +14,7 @@ var app = new Vue({
     },
 
     // Error
-    errorMessage: 'Touche non valide. Veuillez séléctionner les touches de 0 à 9.',
+    errorMessage: 'Veuillez séléctionner les touches de 0 à 9.',
 
     // Instructions
     instructions: [
