@@ -54,7 +54,7 @@
         </div>
         <button type="button"
                 class="btn btn-instructions"
-                v-bind:class="{ visible: isVisible }"
+                :class="{ visible: isVisible }"
                 v-on:click="toggleInstructions">
           <span class="icon-arrow-down2"></span>
         </button>
@@ -94,6 +94,7 @@
                 <input type="text"
                       id="width"
                       class="input"
+                      :class="{ error: hasError }"
                       v-on:keyup="calcRatio">
               </div>
               <div class="calc__section">

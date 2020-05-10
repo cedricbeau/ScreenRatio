@@ -94,6 +94,7 @@
                 <input type="text"
                       id="width"
                       class="input"
+                      :class="{ error: hasError }"
                       v-on:keyup="calcRatio">
               </div>
               <div class="calc__section">

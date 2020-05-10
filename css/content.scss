@@ -3,6 +3,7 @@
 $-c-white: #fff;
 $-c-blue: #78909c;
 $-c-grey-light: #e5e5e5;
+$-c-red-medium: #e57373;
 
 /* ---------- Content ---------- */
 
@@ -45,6 +46,12 @@ $-c-grey-light: #e5e5e5;
 
     &.input--height {
       background-color: #f2f2f2;
+    }
+
+    &.error {
+      border-color: $-c-red-medium;
+      color: $-c-red-medium;
+
     }
   }
 }
