@@ -10,6 +10,10 @@ Outil en ligne permettant de calculer le ratio 16:9, 21:9 ou 4:3 à partir de la
 
 ## Modifications
 
+**22/05/2020**
+
+* Ajout de la detection de IE en CSS
+
 **10/05/2020**
 
 * Ajout d'une alerte sur l'input

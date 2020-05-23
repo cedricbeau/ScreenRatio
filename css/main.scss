@@ -9,6 +9,14 @@ $-c-red-medium: #e57373;
 $-c-red: #c62828;
 $-c-grey-light: #e5e5e5;
 
+// Mixin IE
+
+@mixin target-ie {
+  @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    @content;
+  }
+}
+
 /* Small reset */
 
 *,
@@ -91,6 +99,24 @@ body {
   background-position: 0 0;
   background-attachment: fixed;
   background-size: auto;
+}
+
+.app__content {
+
+  &.is-ie {
+    display: none;
+  }
+
+  @include target-ie {
+
+    &.is-ie {
+      display: block;
+    }
+
+    &.is-not-ie {
+      display: none;
+    }
+  }
 }
 
 /* ---------- Buttons ---------- */

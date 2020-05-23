@@ -43,32 +43,11 @@ var app = new Vue({
     },
 
     isDisplay: false,
-
     hasError: false,
-
-    isNotIE: true,
-
   },
 
   // Methods
   methods: {
-
-    /**
-     * Check if is IE Browser
-     */
-    checkIE: function() {
-      var ua = window.navigator.userAgent;
-      var msie = ua.indexOf("MSIE ");
-
-      if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./)) {
-        this.isNotIE = !this.isNotIE
-      } else {
-        this.isNotIE = this.isNotIE
-      }
-
-      return this.isNotIE;
-    },
-
 
     /**
      * Display the instructions box
